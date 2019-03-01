@@ -1,16 +1,11 @@
-import os
-
-import chess
 from chess import Board
 from chess import pgn as pgn_reader
-from chess.pgn import Game
 
-from Player import HumanPlayer
-from Player import EnginePlayer
+from player import EnginePlayer
 
 
 def handle_score(board):
-    pass
+    print(board.result())
 
 
 def main(pgn=None):
@@ -25,7 +20,6 @@ def main(pgn=None):
     black_player = EnginePlayer("Black")
 
     while True:
-        os.system('clear')
         print(board)
 
         if board.is_game_over():

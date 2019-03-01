@@ -36,7 +36,7 @@ class EnginePlayer(Player):
         super().__init__()
         self.name = name
         self.engine = engine.Engine().engine(engine_name)
-        self.limit = chess.engine.Limit(time=0.100)
+        self.limit = chess.engine.Limit(time=0.001)
 
     def get_next_move(self, board):
         result = self.engine.play(board=board, limit=self.limit)
