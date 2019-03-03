@@ -1,6 +1,7 @@
 import chess
 import chess.engine
-import engine
+
+import engines
 
 
 class Player(object):
@@ -32,15 +33,11 @@ class HumanPlayer(Player):
 
 class EnginePlayer(Player):
 
-    def __init__(self, name="Engine", engine_name="stockfish") -> None:
+    def __init__(self, name="Engine", engine_name="stockfish", depth=0.100) -> None:
         super().__init__()
         self.name = name
-        self.engine = engine.Engine().engine(engine_name)
-        self.limit = chess.engine.Limit(time=0.001)
+        self.engine = engines.engine(engine_name)
+        self.limit = chess.engine.Limit(time=depth)
 
     def get_next_move(self, board):
-        result = self.engine.play(board=board, limit=self.limit)
-        return result.move
-
-    def clean(self):
-        self.engine.quit()
+        return self.engine.play(board=board, limit=self.limit).move
